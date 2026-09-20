@@ -207,3 +207,475 @@ footer{background:#060708;padding:48px 0 24px}.footer-top{display:flex;justify-c
     align-items:center;
   }
 }
+
+
+/* =========================================================
+   V3 MOBILE RESPONSIVE PASS
+   Goal: desktop stays polished, mobile is vertical-only.
+   ========================================================= */
+
+/* Global safety: nothing should force horizontal scrolling */
+html, body {
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+main, section, header, footer, .shell, .narrow {
+  max-width:100%;
+}
+img, svg, video, iframe {
+  max-width:100%;
+  height:auto;
+}
+* {
+  min-width:0;
+}
+h1,h2,h3,p,a,span,strong,li {
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+
+/* Keep desktop layout unchanged above tablet breakpoint */
+@media (max-width:1000px){
+
+  /* Mobile nav becomes a true full-screen vertical panel */
+  .site-header{
+    overflow:visible !important;
+  }
+
+  .nav-shell{
+    height:72px;
+    overflow:visible !important;
+  }
+
+  .menu-btn{
+    display:block;
+    flex:0 0 44px;
+    z-index:1002;
+  }
+
+  .nav{
+    position:fixed !important;
+    top:72px !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    width:100vw !important;
+    max-width:100vw !important;
+    height:calc(100dvh - 72px);
+    padding:24px 5vw 40px;
+    background:#08090b;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    transform:translateX(100%);
+    transition:transform .25s ease;
+    z-index:1000;
+  }
+
+  .nav.open{
+    transform:translateX(0);
+  }
+
+  .nav > a,
+  .nav-drop > button{
+    width:100%;
+    min-height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0;
+    border-bottom:1px solid #20252b;
+    font-size:1rem;
+    text-align:left;
+  }
+
+  .nav-cta{
+    width:100% !important;
+    margin-top:18px;
+    border:1px solid #424951 !important;
+    border-radius:10px !important;
+    padding:0 16px !important;
+    justify-content:center !important;
+    text-align:center;
+  }
+
+  .nav-drop{
+    width:100%;
+    position:static;
+  }
+
+  .nav-drop > button{
+    position:relative;
+    z-index:1;
+  }
+
+  /* The Rebuild submenu opens INSIDE the mobile menu,
+     so the whole list can be seen/scroll naturally. */
+  .dropdown,
+  .nav-drop.open .dropdown{
+    position:static !important;
+    display:none;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:8px 0 12px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:#0d1014 !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+    max-height:none !important;
+  }
+
+  .nav-drop.open .dropdown{
+    display:block !important;
+  }
+
+  .dropdown a{
+    width:100%;
+    min-height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 14px !important;
+    margin:0;
+    border-bottom:1px solid #1d2228;
+    border-radius:0;
+    white-space:normal;
+    font-size:.92rem;
+  }
+
+  .dropdown a:last-child{
+    border-bottom:0;
+  }
+
+  /* All large two-column layouts become one vertical flow */
+  .hero-grid,
+  .reset-grid,
+  .method-split,
+  .page-hero-grid,
+  .content-grid,
+  .section-head,
+  .footer-top{
+    grid-template-columns:1fr !important;
+    width:100%;
+  }
+
+  .hero-grid,
+  .reset-grid,
+  .method-split,
+  .page-hero-grid,
+  .content-grid{
+    gap:42px;
+  }
+
+  .content-grid{
+    display:grid;
+  }
+
+  .sticky-title{
+    position:static !important;
+    top:auto !important;
+    width:100%;
+  }
+
+  .page-number{
+    text-align:left !important;
+    max-width:100%;
+  }
+
+  /* Five-part cards: 2 columns on tablets */
+  .pillar-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .rebuild-map{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    width:100%;
+  }
+
+  .three-col{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Method rows never overflow */
+  .method-step{
+    grid-template-columns:52px 145px minmax(0,1fr);
+  }
+
+  /* Hero art stays inside viewport */
+  .cycle-card,
+  .rebuild-hero-art{
+    width:100%;
+    max-width:560px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .cycle-card img,
+  .rebuild-hero-art img{
+    width:100%;
+    height:auto;
+  }
+
+  /* Ribbon can wrap instead of forcing width */
+  .pillar-ribbon .shell{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+
+  .pillar-ribbon a{
+    min-width:0;
+    padding:14px 8px;
+    font-size:.88rem;
+  }
+
+  /* Footer links fit on tablets */
+  .footer-nav{
+    width:100%;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:650px){
+
+  .shell,
+  .narrow{
+    width:90vw !important;
+    max-width:90vw !important;
+  }
+
+  .nav-shell{
+    width:92vw !important;
+    max-width:92vw !important;
+    height:70px;
+  }
+
+  .nav{
+    top:70px !important;
+    height:calc(100dvh - 70px);
+    padding-left:5vw;
+    padding-right:5vw;
+  }
+
+  /* Header logo fully contained */
+  .site-header .brand{
+    height:70px;
+    overflow:hidden;
+  }
+
+  .site-header .brand img{
+    width:50px !important;
+    height:50px !important;
+    max-width:50px !important;
+    max-height:50px !important;
+    object-fit:contain;
+  }
+
+  /* Home hero */
+  .hero{
+    padding:54px 0 56px !important;
+  }
+
+  .hero-grid{
+    gap:32px !important;
+  }
+
+  .hero h1{
+    font-size:clamp(3.1rem,16vw,5.2rem) !important;
+    line-height:.92;
+  }
+
+  .lead{
+    font-size:1rem;
+  }
+
+  .actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+
+  .micro-row{
+    width:100%;
+    flex-wrap:wrap;
+  }
+
+  /* Circle art */
+  .cycle-card{
+    max-width:100%;
+    padding:8px;
+  }
+
+  .cycle-center-inner{
+    width:36%;
+    max-width:140px;
+  }
+
+  /* The five section becomes one column on phones */
+  .pillar-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .pillar-card{
+    width:100%;
+    min-height:210px;
+  }
+
+  /* Make pillar ribbon vertical-friendly with no horizontal squeeze */
+  .pillar-ribbon .shell{
+    grid-template-columns:1fr 1fr !important;
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  .pillar-ribbon a{
+    border-bottom:1px solid #1f2328;
+    font-size:.86rem;
+  }
+
+  .pillar-ribbon a:nth-child(5){
+    grid-column:1 / -1 !important;
+  }
+
+  /* Section labels stack instead of consuming horizontal space */
+  .intro-grid{
+    grid-template-columns:1fr !important;
+    gap:26px !important;
+  }
+
+  .side-index{
+    align-items:center;
+  }
+
+  .side-index span{
+    writing-mode:horizontal-tb !important;
+    transform:none !important;
+  }
+
+  /* Content pages */
+  .page-hero{
+    padding:58px 0 48px !important;
+  }
+
+  .page-hero h1{
+    font-size:clamp(3rem,15vw,5rem) !important;
+  }
+
+  .page-number{
+    font-size:clamp(4rem,26vw,7rem) !important;
+    overflow:hidden;
+  }
+
+  .content-grid{
+    gap:32px !important;
+  }
+
+  .content-block,
+  .truth-card,
+  .mini-card{
+    width:100%;
+    max-width:100%;
+    padding:22px 20px;
+  }
+
+  .content-block ul{
+    padding-left:18px;
+  }
+
+  /* Method rows stack neatly */
+  .method-step{
+    grid-template-columns:42px minmax(0,1fr) !important;
+    gap:12px;
+  }
+
+  .method-step strong{
+    grid-column:2;
+  }
+
+  .method-step p{
+    grid-column:2;
+    width:100%;
+  }
+
+  /* Rebuild overview becomes one card per row */
+  .rebuild-map{
+    grid-template-columns:1fr !important;
+  }
+
+  .rebuild-map a{
+    width:100%;
+    min-height:145px;
+  }
+
+  /* Reset form cannot exceed screen */
+  .reset-card{
+    width:100%;
+    max-width:100%;
+    padding:24px 20px;
+  }
+
+  .input-row{
+    grid-template-columns:minmax(0,1fr) 48px;
+  }
+
+  .input-row input{
+    min-width:0;
+    width:100%;
+  }
+
+  /* Social + footer */
+  .social-strip .shell{
+    width:90vw !important;
+    max-width:90vw !important;
+  }
+
+  .social-links{
+    width:100%;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+  }
+
+  .footer-nav{
+    grid-template-columns:1fr !important;
+    width:100%;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+
+  /* Prevent giant statements from overflowing */
+  h2{
+    max-width:100%;
+  }
+
+  .big-line,
+  .quote-band{
+    max-width:100%;
+  }
+}
+
+/* Extra-narrow phone safety */
+@media (max-width:390px){
+  .hero h1{
+    font-size:3rem !important;
+  }
+  .page-hero h1{
+    font-size:3rem !important;
+  }
+  .cycle-center-inner strong{
+    font-size:.8rem;
+  }
+  .cycle-center-inner span{
+    font-size:.34rem;
+  }
+}
