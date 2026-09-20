@@ -1,0 +1,21 @@
+{
+  "builds": [
+    {
+      "src": "subscribe.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/subscribe",
+      "dest": "/subscribe.js"
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
+}

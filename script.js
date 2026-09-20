@@ -1,4 +1,3 @@
-
 const menuBtn=document.querySelector('.menu-btn');
 const nav=document.querySelector('.nav');
 menuBtn?.addEventListener('click',()=>{
@@ -21,8 +20,38 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener('submit',e=>{
+document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener('submit',async e=>{
   e.preventDefault();
+  const input=form.querySelector('input[type="email"]');
+  const button=form.querySelector('button[type="submit"]');
   const note=form.querySelector('.form-note');
-  if(note) note.textContent='The UJ email list is being connected next. This form is not collecting addresses yet.';
+  const email=(input?.value||'').trim();
+
+  if(!email){
+    if(note) note.textContent='Enter your email to start the 7-Day Reset.';
+    return;
+  }
+
+  const originalButton=button?.textContent;
+  if(button){button.disabled=true;button.textContent='…';}
+  if(note) note.textContent='Starting your 7-Day Reset…';
+
+  try{
+    const response=await fetch('/api/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email})
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(data.error||'Something went wrong.');
+
+    if(note) note.textContent=data.alreadySubscribed
+      ? 'You’re already on the list. Check your inbox.'
+      : 'You’re in. Check your inbox for the first email.';
+    form.reset();
+  }catch(err){
+    if(note) note.textContent='Couldn’t start the Reset just yet. Please try again.';
+  }finally{
+    if(button){button.disabled=false;button.textContent=originalButton||'→';}
+  }
 }));
