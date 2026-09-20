@@ -129,3 +129,44 @@ footer{background:#060708;padding:48px 0 24px}.footer-top{display:flex;justify-c
 .social-links a:hover{
   color:#fff;
 }
+
+
+/* Header logo containment fix */
+.site-header{
+  overflow:visible;
+}
+.nav-shell{
+  overflow:hidden;
+}
+.brand{
+  height:100%;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.site-header .brand img{
+  width:56px !important;
+  height:56px !important;
+  max-width:56px !important;
+  max-height:56px !important;
+  object-fit:contain;
+  flex:0 0 56px;
+  mix-blend-mode:normal;
+  background:transparent;
+}
+.footer-logo img{
+  width:110px;
+  height:auto;
+  max-width:110px;
+  mix-blend-mode:normal;
+  background:transparent;
+}
+@media(max-width:650px){
+  .site-header .brand img{
+    width:52px !important;
+    height:52px !important;
+    max-width:52px !important;
+    max-height:52px !important;
+    flex-basis:52px;
+  }
+}
