@@ -112,3 +112,20 @@ footer{background:#060708;padding:48px 0 24px}.footer-top{display:flex;justify-c
   .nav-shell{height:70px}.site-header .brand img{width:132px}.nav{top:70px}.hero{padding:68px 0 60px}.hero-grid{gap:38px}.hero h1{font-size:clamp(3.7rem,17vw,5.6rem)}.cycle-card{padding:10px;border-radius:20px}.cycle-center-inner{width:34%}.cycle-center-inner strong{font-size:1rem}.cycle-center-inner span{font-size:.42rem}.micro-row{flex-wrap:wrap;gap:7px 0}.pillar-ribbon .shell{grid-template-columns:1fr 1fr}.pillar-ribbon a:last-child{grid-column:1/3}.pillar-ribbon a{border-bottom:1px solid #1f2328}.section{padding:78px 0}.intro-grid{grid-template-columns:1fr}.side-index span{writing-mode:initial;transform:none}.pillar-grid{grid-template-columns:1fr}.pillar-card{min-height:220px}.pillar-card h3{margin-top:34px}.method-step{grid-template-columns:42px 1fr}.method-step p{grid-column:2}.reset-card{padding:26px}.social-links{flex-wrap:wrap}.footer-bottom{flex-direction:column}.page-hero{padding:72px 0 58px}.page-hero h1{font-size:clamp(3.7rem,17vw,5.8rem)}.rebuild-map{grid-template-columns:1fr}.rebuild-map a{min-height:150px}.footer-nav{grid-template-columns:1fr}.eyebrow{line-height:1.5}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+
+/* V3 brand fix: exact UJ logo + recognizable social platform icons */
+.brand img,
+.footer-logo img{
+  object-fit:contain;
+  background:#000;
+}
+.social-links a{
+  color:#fff;
+  font-size:1.15rem;
+}
+.social-links a i{
+  line-height:1;
+}
+.social-links a:hover{
+  color:#fff;
+}
