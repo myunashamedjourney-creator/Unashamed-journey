@@ -1,1 +1,28 @@
-const toggle=document.querySelector('.nav-toggle');const nav=document.querySelector('.nav');toggle?.addEventListener('click',()=>{const isOpen=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',isOpen?'true':'false');document.body.classList.toggle('nav-open',isOpen)});document.querySelectorAll('.nav a').forEach(link=>{link.addEventListener('click',()=>{nav.classList.remove('open');toggle?.setAttribute('aria-expanded','false');document.body.classList.remove('nav-open')})});const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));const signup=document.getElementById('signupForm');signup?.addEventListener('submit',e=>{e.preventDefault();const note=document.getElementById('formNote');const email=document.getElementById('email');if(email?.value.trim()){note.textContent='You’re on the early-access list — email connection is the next build step.';note.style.color='#8fc0df'}});
+
+const menuBtn=document.querySelector('.menu-btn');
+const nav=document.querySelector('.nav');
+menuBtn?.addEventListener('click',()=>{
+  const open=nav.classList.toggle('open');
+  document.body.classList.toggle('menu-open',open);
+  menuBtn.setAttribute('aria-expanded',open?'true':'false');
+});
+document.querySelectorAll('.nav-drop>button').forEach(btn=>{
+  btn.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    btn.parentElement.classList.toggle('open');
+  });
+});
+document.addEventListener('click',(e)=>{
+  document.querySelectorAll('.nav-drop.open').forEach(d=>{ if(!d.contains(e.target)) d.classList.remove('open'); });
+});
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
+  nav?.classList.remove('open');document.body.classList.remove('menu-open');menuBtn?.setAttribute('aria-expanded','false');
+}));
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const note=form.querySelector('.form-note');
+  if(note) note.textContent='The UJ email list is being connected next. This form is not collecting addresses yet.';
+}));
