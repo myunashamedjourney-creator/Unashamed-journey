@@ -170,3 +170,40 @@ footer{background:#060708;padding:48px 0 24px}.footer-top{display:flex;justify-c
     flex-basis:52px;
   }
 }
+
+
+/* Rebuild dropdown visibility/access fix */
+.nav-shell{
+  overflow:visible !important;
+}
+.site-header,
+.nav,
+.nav-drop{
+  overflow:visible;
+}
+.dropdown{
+  z-index:300;
+}
+@media(max-width:1000px){
+  .nav{
+    overflow-y:auto;
+    overflow-x:visible;
+  }
+  .nav-drop{
+    width:100%;
+  }
+  .nav-drop.open .dropdown{
+    display:block;
+    position:static;
+    width:100%;
+    max-height:none;
+    overflow:visible;
+    margin-top:12px;
+  }
+  .dropdown a{
+    display:flex;
+    width:100%;
+    min-height:48px;
+    align-items:center;
+  }
+}
