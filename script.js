@@ -1,14 +1,12 @@
 // Vercel Web Analytics
-window.va = window.va || function () {
-  (window.vaq = window.vaq || []).push(arguments);
-};
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 
 if (!document.querySelector('script[data-vercel-analytics]')) {
-  const analyticsScript = document.createElement('script');
-  analyticsScript.defer = true;
-  analyticsScript.src = '/_vercel/insights/script.js';
-  analyticsScript.setAttribute('data-vercel-analytics', 'true');
-  document.head.appendChild(analyticsScript);
+  const s = document.createElement('script');
+  s.defer = true;
+  s.src = '/_vercel/insights/script.js';
+  s.setAttribute('data-vercel-analytics','true');
+  document.head.appendChild(s);
 }
 
 const menuBtn=document.querySelector('.menu-btn');
@@ -19,10 +17,7 @@ menuBtn?.addEventListener('click',()=>{
   menuBtn.setAttribute('aria-expanded',open?'true':'false');
 });
 document.querySelectorAll('.nav-drop>button').forEach(btn=>{
-  btn.addEventListener('click',(e)=>{
-    e.stopPropagation();
-    btn.parentElement.classList.toggle('open');
-  });
+  btn.addEventListener('click',(e)=>{e.stopPropagation();btn.parentElement.classList.toggle('open');});
 });
 document.addEventListener('click',(e)=>{
   document.querySelectorAll('.nav-drop.open').forEach(d=>{ if(!d.contains(e.target)) d.classList.remove('open'); });
@@ -32,6 +27,30 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
 }));
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.addEventListener('click',e=>{
+  const link=e.target.closest('a');
+  if(!link || typeof window.va!=='function') return;
+  const href=link.getAttribute('href')||'';
+
+  if(href.includes('reset.html') || href==='/reset'){
+    window.va('event',{
+      name:'Reset CTA Click',
+      data:{page:window.location.pathname||'/',label:(link.textContent||'').trim().slice(0,80)}
+    });
+  }
+
+  const host=link.hostname||'';
+  if(host.includes('instagram.com') || host.includes('tiktok.com') || host.includes('youtube.com')){
+    window.va('event',{
+      name:'Social Outbound Click',
+      data:{
+        page:window.location.pathname||'/',
+        platform:host.includes('instagram.com')?'instagram':host.includes('tiktok.com')?'tiktok':'youtube'
+      }
+    });
+  }
+});
 
 document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener('submit',async e=>{
   e.preventDefault();
@@ -62,10 +81,15 @@ document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener
       ? 'You’re already on the list. Check your inbox.'
       : 'You’re in. Check your inbox for the first email.';
 
-    if(!data.alreadySubscribed && typeof window.va === 'function'){
+    if(!data.alreadySubscribed && typeof window.va==='function'){
+      const params=new URLSearchParams(window.location.search);
       window.va('event',{
         name:'7-Day Reset Signup',
-        data:{source:window.location.pathname||'/'}
+        data:{
+          page:window.location.pathname||'/',
+          source:params.get('utm_source')||'direct',
+          campaign:params.get('utm_campaign')||'none'
+        }
       });
     }
 

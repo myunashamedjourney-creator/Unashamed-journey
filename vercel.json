@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "builds": [
     {
       "src": "subscribe.js",
@@ -7,6 +8,38 @@
     {
       "src": "**/*",
       "use": "@vercel/static"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/instagram",
+      "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=profile",
+      "permanent": false
+    },
+    {
+      "source": "/tiktok",
+      "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=profile",
+      "permanent": false
+    },
+    {
+      "source": "/youtube",
+      "destination": "/?utm_source=youtube&utm_medium=social&utm_campaign=profile",
+      "permanent": false
+    },
+    {
+      "source": "/instagram-reset",
+      "destination": "/reset.html?utm_source=instagram&utm_medium=social&utm_campaign=7day_reset",
+      "permanent": false
+    },
+    {
+      "source": "/tiktok-reset",
+      "destination": "/reset.html?utm_source=tiktok&utm_medium=social&utm_campaign=7day_reset",
+      "permanent": false
+    },
+    {
+      "source": "/youtube-reset",
+      "destination": "/reset.html?utm_source=youtube&utm_medium=social&utm_campaign=7day_reset",
+      "permanent": false
     }
   ],
   "routes": [
