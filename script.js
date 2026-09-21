@@ -1,3 +1,16 @@
+// Vercel Web Analytics
+window.va = window.va || function () {
+  (window.vaq = window.vaq || []).push(arguments);
+};
+
+if (!document.querySelector('script[data-vercel-analytics]')) {
+  const analyticsScript = document.createElement('script');
+  analyticsScript.defer = true;
+  analyticsScript.src = '/_vercel/insights/script.js';
+  analyticsScript.setAttribute('data-vercel-analytics', 'true');
+  document.head.appendChild(analyticsScript);
+}
+
 const menuBtn=document.querySelector('.menu-btn');
 const nav=document.querySelector('.nav');
 menuBtn?.addEventListener('click',()=>{
@@ -48,6 +61,14 @@ document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener
     if(note) note.textContent=data.alreadySubscribed
       ? 'You’re already on the list. Check your inbox.'
       : 'You’re in. Check your inbox for the first email.';
+
+    if(!data.alreadySubscribed && typeof window.va === 'function'){
+      window.va('event',{
+        name:'7-Day Reset Signup',
+        data:{source:window.location.pathname||'/'}
+      });
+    }
+
     form.reset();
   }catch(err){
     if(note) note.textContent='Couldn’t start the Reset just yet. Please try again.';
