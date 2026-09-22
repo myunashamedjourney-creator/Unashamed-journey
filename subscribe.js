@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 
   const email = String(req.body?.email || '').trim().toLowerCase();
-  const valid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   if (!valid) {
     return res.status(400).json({ error: 'Enter a valid email address.' });
