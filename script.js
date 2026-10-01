@@ -119,3 +119,17 @@ document.querySelectorAll('[data-waitlist]').forEach(form=>form.addEventListener
     }
   }
 }));
+
+
+// V4: highlight the current article section in the sticky reader bar.
+(function readerBarSpy(){
+  const links=[...document.querySelectorAll('.reader-bar nav a')];
+  if(!links.length) return;
+  const sections=links.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  const setActive=(id)=>links.forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#${id}`));
+  const spy=new IntersectionObserver(entries=>{
+    const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(visible?.target?.id) setActive(visible.target.id);
+  },{rootMargin:'-32% 0px -55% 0px',threshold:[0,.1,.3,.6]});
+  sections.forEach(section=>spy.observe(section));
+})();
