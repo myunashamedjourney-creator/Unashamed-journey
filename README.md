@@ -1,15 +1,16 @@
-# Unashamed Journey V4
+# Unashamed Journey — V5 Content Edition
 
-This package is the upgraded static site for myunashamedjourney.com.
+This package keeps the existing UJ visual identity and Vercel/Resend setup while upgrading the site into a free credibility/content hub.
 
-## Included in V4
-- Five Rebuild guide pages: Faith, Mind, Body, Identity, Relationships
-- Reader-friendly guide navigation and previous/next flow
-- "Start Where the Work Is" homepage routing section
-- Stronger Rebuild Circle explanation
-- Expanded Why UJ story
-- Free-content hub on the homepage
-- Existing 7-Day Reset signup/API flow preserved
+## V5 changes
+- Five full cornerstone Rebuild guides: Faith, Mind, Body, Identity, Relationships.
+- Homepage primary CTA is **Explore the Rebuild**; the free 7-Day Reset is secondary.
+- Homepage story and updated five-area explanation aligned to the finalized pillar material.
+- Faith positioning explicitly centers **relationship with God, not religious performance**.
+- New dedicated `why.html` page.
+- Expanded Rebuild Circle page with **Start Where the Work Is** and a non-sequential explanation of the circle.
+- Expanded Method page with multiple real-life examples.
+- Existing `subscribe.js`, `package.json`, and `vercel.json` preserved. Existing `/api/subscribe` backend in the connected repository should remain in place when these root files are uploaded.
 
-## Deployment
-Use this as a replacement for the current repository site files. Keep the existing Vercel project, domain, and environment variables. The signup endpoint still uses `/api/subscribe` and `RESEND_API_KEY` through the existing Vercel configuration.
+## Manual GitHub deployment
+Upload the **contents of this folder** to the root of the existing `myunashamedjourney-creator/Unashamed-journey` repository on `main`, replacing files with matching names. Do not upload the ZIP itself into the repo. Do not delete the existing `api/` folder or change Vercel environment variables.
