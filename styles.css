@@ -877,3 +877,11 @@ h1,h2,h3,p,a,span,strong,li {
 @media(max-width:1000px){
   .founder-photo-why{max-width:360px}
 }
+
+/* Reset page: what's inside */
+.reset-days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.reset-days .mini-card strong{font-size:1.3rem;line-height:1.15}
+.reset-days .mini-card p{line-height:1.6}
+.reset-days-cta{margin-top:36px}
+@media(max-width:1000px){.reset-days{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.reset-days{grid-template-columns:1fr}}
