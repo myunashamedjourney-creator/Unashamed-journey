@@ -40,6 +40,29 @@
       "dest": "/reset.html"
     },
     {
+      "src": "/(faith|mind|body|identity|relationships|method|rebuild|why|reset)",
+      "dest": "/$1.html"
+    },
+    {
+      "src": "/the-method",
+      "dest": "/method.html"
+    },
+    {
+      "src": "/why-uj",
+      "dest": "/why.html"
+    },
+    {
+      "src": "/7-day-reset",
+      "dest": "/reset.html"
+    },
+    {
+      "src": "/start-here",
+      "status": 307,
+      "headers": {
+        "Location": "/#where-the-work-is"
+      }
+    },
+    {
       "handle": "filesystem"
     }
   ]
