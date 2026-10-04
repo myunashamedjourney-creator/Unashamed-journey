@@ -845,3 +845,22 @@ h1,h2,h3,p,a,span,strong,li {
   .article-pullquote{padding:25px 22px;margin-bottom:46px}
   .method-example{padding:22px}
 }
+
+/* Guide pages: "The short version" summary block */
+.short-version{padding:56px 0 0;background:#090b0d}
+.short-version-card{max-width:860px;border:1px solid #29455e;border-radius:var(--radius);background:radial-gradient(circle at 90% 15%,rgba(10,132,255,.10),transparent 38%),#0b1015;padding:34px 38px}
+.short-version-card .eyebrow{margin:0 0 18px}
+.short-version-lines{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.short-version-lines li{position:relative;padding-left:22px;font-family:Oswald,Inter,sans-serif;font-weight:500;font-size:clamp(1.2rem,2.1vw,1.55rem);line-height:1.32;color:#eef1f3}
+.short-version-lines li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.short-version-action{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.short-version-action span{display:block;font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.short-version-action p{margin:0;color:#c3c9cf;font-size:1.02rem;line-height:1.75}
+.short-version-more{display:inline-block;margin-top:20px;color:var(--blue-soft);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.short-version-more:hover{color:var(--white)}
+@media(max-width:650px){
+  .short-version{padding-top:40px}
+  .short-version-card{padding:24px 20px}
+  .short-version-lines li{font-size:1.15rem}
+  .short-version-action p{font-size:.98rem}
+}
