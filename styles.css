@@ -885,3 +885,19 @@ h1,h2,h3,p,a,span,strong,li {
 .reset-days-cta{margin-top:36px}
 @media(max-width:1000px){.reset-days{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.reset-days{grid-template-columns:1fr}}
+
+/* Reset page: above-the-fold email capture with a labelled button */
+.reset-cta-form{margin-top:26px;max-width:560px}
+.reset-cta-form .input-row{display:flex;gap:10px;border:0;grid-template-columns:none}
+.reset-cta-form .input-row input{flex:1 1 auto;min-width:0;min-height:54px;padding:0 16px;border:1px solid #4c5660;border-radius:9px;background:#0d1014;color:#fff;font-size:1rem}
+.reset-cta-form .input-row input:focus{border-color:var(--blue)}
+.reset-cta-form .input-row button.btn{flex:0 0 auto;min-height:54px;padding:0 22px;font-size:.92rem;color:#fff;cursor:pointer;white-space:nowrap}
+.page-hero .reset-cta-form .form-note{color:#8a929b}
+@media(max-width:640px){
+  .reset-cta-form .input-row{flex-direction:column}
+  .reset-cta-form .input-row button.btn{width:100%}
+  .page-hero:has(.reset-cta-form){padding:32px 0 40px !important}
+  .page-hero:has(.reset-cta-form) .page-number{display:none}
+  .page-hero:has(.reset-cta-form) .crumbs{margin-bottom:10px}
+  .page-hero:has(.reset-cta-form) .lead{margin-top:14px}
+}
