@@ -16,8 +16,15 @@
       "dest": "/subscribe.js"
     },
     {
+      "src": "/reset/",
+      "status": 308,
+      "headers": {
+        "Location": "/reset"
+      }
+    },
+    {
       "src": "/instagram",
-      "dest": "/index.html"
+      "dest": "/reset.html"
     },
     {
       "src": "/tiktok",
